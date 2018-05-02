@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="newApp" ng-controller="myController">
+<head>
+    <!-- Main page of web app -->
+    <meta charset="UTF-8">
+    <title>Fidelis Elevate</title>
+    <link rel="stylesheet" href="fidelisChallenge.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+    <script type = "text/javascript" src="index.js"></script>
+</head>
+<body>
+<div class="mainContainer">
+    <div class="topMenu">
+        <a href="#index"  class="tabHeader"></a>
+
+    </div>
+    <div class="filters-left">
+
+        <h2>Filters</h2>
+
+        <h3>Severity</h3>
+        <hr>
+        <button class="button" ng-click="filterBy('High')">High</button>
+        <button class="button" ng-click="filterBy('Medium')">Medium</button>
+        <button class="button" ng-click="filterBy('Low')">Low</button>
+        <h3>Protocol</h3>
+        <hr>
+        <button class="button" ng-click="filterBy('HTTP')">HTTP</button>
+        <button class="button" ng-click="filterBy('FTP')">FTP</button>
+        <button class="button" ng-click="filterBy('TLS')">TLS</button>
+        <h3>Client IP</h3>
+        <hr>
+        <button class="button" ng-click="filterBy('155.175.121.134')">IP #155.175.121.134</button>
+        <button class="button" ng-click="filterBy('66.78.200.140')">IP #66.78.200.140</button>
+        <button class="button" ng-click="filterBy('43.172.24.178')">IP #43.172.24.178</button>
+
+        <button class="reset" ng-click="filterBy('')">Reset Filters</button>
+
+    </div>
+    <div class="alerts-center">
+        <div class="alerts-header">
+            <h2>Alerts ({{totalAlerts}})
+            <form class="searchForm">
+                <div class="search">
+                    <input type="text" id="searchInput" class="searchBar" placeholder="Search..." ng-keyup="filterBy(undefined)">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            </h2>
+        </div>
+
+        <div class="table-container">
+            <div class="table-scroller">
+                <table class="alerts-table" id="myTable">
+                    <thead class="head">
+                        <tr class="fixed-row">
+                            <th class="fixed-header" ng-repeat="attribute in alertAttributes">
+                                {{attribute}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="scrolling-row" ng-repeat="n in alertData" ng-click="getDetails(n)">
+                            <td>{{n.AlertId}}</td>
+                            <td>{{n.AlertTime}}</td>
+                            <td>{{n.Severity}}</td>
+                            <td>{{n.ClientIP}}</td>
+                            <td>{{n.ServerIP}}</td>
+                            <td>{{n.Protocol}}</td>
+                            <td>{{n.ClientCountry}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="alertDetails-right">
+        <h2>Alert Details #{{clickedAlert.AlertId}}</h2>
+        <hr>
+        <table class="details">
+            <tr ng-repeat="(key, value) in clickedAlert">
+                <td>{{key}}:    {{value}}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<script>
+
+</script>
+
+
+</body>
+</html>
