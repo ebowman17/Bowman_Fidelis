@@ -10,11 +10,15 @@
     <script type = "text/javascript" src="index.js"></script>
 </head>
 <body>
+<!-- div to contain and format three vertical panels and header-->
 <div class="mainContainer">
+    <!-- top navigation menu -->
     <div class="topMenu">
-        <a href="#index"  class="tabHeader"></a>
-
+        <a class = "active" href="#index">Alerts</a>
+        <a href="#events">Events</a>
     </div>
+
+    <!-- left side filter menu -->
     <div class="filters-left">
 
         <h2>Filters</h2>
@@ -36,11 +40,12 @@
         <button class="button" ng-click="filterBy('43.172.24.178')">IP #43.172.24.178</button>
 
         <button class="reset" ng-click="filterBy('')">Reset Filters</button>
-
     </div>
+
+    <!-- main table and search bar -->
     <div class="alerts-center">
         <div class="alerts-header">
-            <h2>Alerts ({{totalAlerts}})
+            <h2>Alerts ({{totalAlerts}}) <!-- number of alerts currently shown in table -->
             <form class="searchForm">
                 <div class="search">
                     <input type="text" id="searchInput" class="searchBar" placeholder="Search..." ng-keyup="filterBy(undefined)">
@@ -50,17 +55,19 @@
             </h2>
         </div>
 
+        <!-- main table -->
         <div class="table-container">
             <div class="table-scroller">
                 <table class="alerts-table" id="myTable">
                     <thead class="head">
-                        <tr class="fixed-row">
-                            <th class="fixed-header" ng-repeat="attribute in alertAttributes">
+                        <tr class="topRow">
+                            <th class="topHeader" ng-repeat="attribute in alertAttributes">
                                 {{attribute}}
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                    <!-- loop through each alert (row -tr) and set its attributes (columns - td) -->
                         <tr class="scrolling-row" ng-repeat="n in alertData" ng-click="getDetails(n)">
                             <td>{{n.AlertId}}</td>
                             <td>{{n.AlertTime}}</td>
@@ -69,30 +76,24 @@
                             <td>{{n.ServerIP}}</td>
                             <td>{{n.Protocol}}</td>
                             <td>{{n.ClientCountry}}</td>
-
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
     </div>
+
+    <!-- once clicked, get details about selected alert and display -->
     <div class="alertDetails-right">
         <h2>Alert Details #{{clickedAlert.AlertId}}</h2>
         <hr>
         <table class="details">
+            <!-- loop through each attribute and display its value -->
             <tr ng-repeat="(key, value) in clickedAlert">
                 <td>{{key}}:    {{value}}</td>
             </tr>
         </table>
     </div>
-
 </div>
-
-<script>
-
-</script>
-
-
 </body>
 </html>

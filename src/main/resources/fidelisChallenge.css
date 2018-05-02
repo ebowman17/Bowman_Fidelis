@@ -1,3 +1,72 @@
+/*
+    Fidelis Code Challenge Stylesheet
+    Emily Bowman
+
+    Consists of styling for four main sections:
+    * topMenu: Navigation bar at the top of the page
+    * filters-left: Left portion of page - includes buttons for filtering
+    * alerts-center: Contains main table and a top header for number of
+        alerts in the table and a search bar for additional filtering
+    * alertDetails-right: Smaller box on the right that updates with details
+        regarding a specific alert selected from the table
+*/
+
+/*** general ***/
+
+/* bounds of the page holding divs for filters, alerts, and details */
+.mainContainer{
+    display: inline-block;
+    width: 100%;
+    min-width: 600px;
+}
+/* Large headers for Filters, Alerts, and Details */
+h2{
+    padding: 5px 10px;
+}
+/* Medium headers for Severity, Protocol, and Client IP filters */
+h3{
+    padding: 0px 5px;
+}
+
+/*** topMenu ****/
+
+/* top nav bar */
+.topMenu{
+    background-color: #b9b9b9;
+    max-height: 5vh;
+    width: 100%;
+    overflow: hidden;
+}
+/* page selection tabs */
+.topMenu a{
+    float: left;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12pt;
+}
+.topMenu a:hover{
+    background-color: #bbe8f4; /* light blue */
+}
+.topMenu a.active{
+    background-color:black;
+    color: white;
+}
+
+/*** filters-left ***/
+
+/* container - sidebar */
+.filters-left{
+    display: inline-block;
+    float: left;
+    width: 15%;
+    height: 90vh;
+    border: 1px solid black;
+    background-color: #e8e8e8; /* light grey */
+}
+
+/* filter buttons */
 button.button{
     display: block;
     font-size: 10pt;
@@ -8,31 +77,16 @@ button.button{
     cursor: pointer;
     padding: 5px;
 }
+/* "Reset Filters" button */
 button.reset{
     font-size: 10pt;
     margin-top: 20px;
     margin-left: 5px;
 }
-.mainContainer{
-    display: inline-block;
-    width: 100%;
-    min-width: 600px;
-}
-.filters-left{
-    display: inline-block;
-    float: left;
-    width: 15%;
-    height: 90vh;
-    border: 1px solid black;
-    background-color: #e8e8e8;
-}
-h2{
-    padding: 5px 10px;
-}
-h3{
-    padding: 0px 5px;
-}
-/* make two-way scrollable so table is always visible */
+
+/*** alerts-center ***/
+
+/* container */
 .alerts-center{
     display: inline-block;
     float: left;
@@ -41,23 +95,26 @@ h3{
     border: 1px solid black;
     height: 90vh;
 }
-.alertDetails-right{
-    display: inline-block;
-    float: left;
-    width: 20%;
-    min-width: 50px;
-    border: 1px solid black;
-}
-.details{
-    width: 100%;
-}
+/* header - includes num alerts and search bar */
 .alerts-header{
     width: 100%;
     max-height: 10vh;
     float: left;
     display: inline;
 }
-/* make table size adjust with alerts window */
+.searchForm{
+    float: right;
+}
+.search{
+    float: right;
+}
+.searchBar{
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+/** table **/
+/* table bounds */
 .table-container{
     position: relative;
     max-width: 100%;
@@ -66,18 +123,6 @@ h3{
     overflow: auto;
     border: 1px solid #000;
 }
-.table-scroller{
-    width: 100%;
-    height: 90%;
-    overflow: auto;
-}
-.alerts-table{
-    width: 100%;
-    height: 90%;
-    margin: auto;
-    border-collapse: separate;
-    border-spacing: 0;
-}
 .table-container td{
     padding: 5px 10px;
     border: 1px solid #000;
@@ -85,28 +130,52 @@ h3{
     vertical-align: top;
     overflow: hidden;
 }
-tbody tr:nth-child(even){
-    background-color: #e8e8e8;
+/* adds two-way scrolling ability */
+.table-scroller{
+    width: 100%;
+    height: 90%;
+    overflow: auto;
 }
-tr.scrolling-row:hover{
-    cursor: pointer;
-    background-color: #bbe8f4;
+/* full table contents */
+.alerts-table{
+    width: 100%;
+    height: 90%;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 0;
 }
-.fixed-row{
-    background-color: #b9b9b9;
+/* top row of table */
+.topRow{
+    background-color: #b9b9b9; /* darker grey */
 }
-.fixed-header{
+/* table headers */
+.topHeader{
     padding: 5px 15px;
     border: 1px solid #000;
 }
+/* main content rows */
+tbody tr:nth-child(even){
+    background-color: #e8e8e8; /* light grey */
+}
+tr.scrolling-row:hover{
+    cursor: pointer;
+    background-color: #bbe8f4; /* light blue */
+}
 
-.search{
-    float: right;
+/*** alertDetails-right ***/
+
+/* container with header */
+.alertDetails-right{
+    display: inline-block;
+    float: left;
+    width: 20%;
+    min-width: 50px;
+    border: 1px solid black;
 }
-.searchBar{
-    border-radius: 10px;
-    padding-left: 10px;
+/* table containing alert details */
+.details{
+    width: 100%;
 }
-.searchForm{
-    float: right;
-}
+
+
+
